@@ -24,12 +24,12 @@ Button::Button(Action click_handler, Vector size, Vector pos, std::string text, 
     Body.SetOutlineThickness(2);
     Body.SetOutlineColor(Color::Black);
     
-    Font font;
-    font.LoadFromFile("sansation.ttf");
-    SetFont(font);
-    
-    SetText(text);
-    Label.SetFillColor(Color::Black);
+//    Font font;
+//    font.LoadFromFile("sansation.ttf");
+//    SetFont(font);
+//    
+//    SetText(text);
+//    Label.SetFillColor(Color::Black);
 }
 
 

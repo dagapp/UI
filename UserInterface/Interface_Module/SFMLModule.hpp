@@ -20,5 +20,7 @@
 #include "../SFML_Module/Font.hpp"
 #include "../SFML_Module/Rectangle.hpp"
 #include "../SFML_Module/Vector3.hpp"
+#include "../SFML_Module/Vertex.hpp"
+#include "../SFML_Module/Vertex3.hpp"
 
 #endif /* SFMLModule_hpp */

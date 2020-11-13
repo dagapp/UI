@@ -23,26 +23,31 @@ class SphereScene : public Element
         Vector3 ToScene(Vector point);
         Vector  ToDisplay(Vector3 point);
     
+        Vector3 Light(Vector3 point, int light_index);
+    
         void Draw(RenderWindow & window) override;
         
     public:
         Color Sphere;
-        Color Light;
         Color Ambient;
     
         int Radius;
         int Material;
     
-        Vector3 LightPosition;
+        std::vector<Vertex3> Lights;
     
         SphereScene(Color sphere,
-                    Color light,
+                    std::vector<Vertex3> lights,
                     Color ambient,
                     int radius,
                     int material,
-                    Vector3 light_pos,
                     int size,
                     Vector pos = Vector(0, 0));
+        
+        ~SphereScene();
+    
+        void AddLight(Vertex3 vertex);
+        void RemoveLight(int index);
         
         void EventHandler(const Event & event) override;
 };
