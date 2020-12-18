@@ -41,6 +41,9 @@ struct Vector
     
     bool   operator < (Vector vector);
     bool   operator > (Vector vector);
+    
+    bool   operator <= (Vector vector);
+    bool   operator >= (Vector vector);
 };
 
 #endif /* Vector_hpp */

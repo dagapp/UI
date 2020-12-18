@@ -55,30 +55,30 @@ void RectangleShape::SetOutlineColor(Color color)
 
 
 
-Vector RectangleShape::GetPosition()
+Vector RectangleShape::GetPosition() const
 {
     sf::Vector2f pos = Body.getPosition();
     return Vector(pos.x, pos.y);
 }
 
-Vector RectangleShape::GetSize()
+Vector RectangleShape::GetSize() const
 {
     sf::Vector2f size = Body.getSize();
     return Vector(size.x, size.y);
 }
 
-Color RectangleShape::GetFillColor()
+Color RectangleShape::GetFillColor() const
 {
     sf::Color color = Body.getFillColor();
     return Color(color.r, color.g, color.b, color.a);
 }
 
-float RectangleShape::GetOutlineThickness()
+float RectangleShape::GetOutlineThickness() const
 {
     return Body.getOutlineThickness();
 }
 
-Color RectangleShape::GetOutlineColor()
+Color RectangleShape::GetOutlineColor() const
 {
     sf::Color result = Body.getOutlineColor();
     return Color(result.r, result.g, result.b, result.a);
@@ -86,7 +86,7 @@ Color RectangleShape::GetOutlineColor()
 
 
 
-Rectangle RectangleShape::GetGlobalBounds()
+Rectangle RectangleShape::GetGlobalBounds() const
 {
     return Rectangle(Body.getSize(), Body.getPosition());
 }

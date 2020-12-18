@@ -16,7 +16,7 @@ class Container : public Element
     private:
         std::vector<Element *> Elements;
     
-        void Draw(RenderWindow & window) override;
+        virtual void Draw(RenderWindow & window) override;
         
     public:
         Container();
@@ -29,7 +29,7 @@ class Container : public Element
     
         void AddElement(Element * element);
     
-        void EventHandler(const Event & event) override;
+        virtual void EventHandler(const Event & event) override;
 };
 
 #endif /* Container_hpp */

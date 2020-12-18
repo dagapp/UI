@@ -25,7 +25,7 @@ class SphereScene : public Element
     
         Vector3 Light(Vector3 point, int light_index);
     
-        void Draw(RenderWindow & window) override;
+        virtual void Draw(RenderWindow & window) override;
         
     public:
         Color Sphere;
@@ -49,7 +49,7 @@ class SphereScene : public Element
         void AddLight(Vertex3 vertex);
         void RemoveLight(int index);
         
-        void EventHandler(const Event & event) override;
+        virtual void EventHandler(const Event & event) override;
 };
 
 #endif /* SphereScene_hpp */

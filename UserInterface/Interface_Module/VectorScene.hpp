@@ -21,7 +21,7 @@ class VectorScene : public Element
     
         Vector ToScreen(Vector vector);
     
-        void Draw(RenderWindow & window) override;
+        virtual void Draw(RenderWindow & window) override;
     
     public:
         VectorScene(std::vector<Vector> vectors, float length, float width, Vector size, Vector pos = Vector(0, 0));

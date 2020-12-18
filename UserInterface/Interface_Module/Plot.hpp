@@ -14,6 +14,7 @@
 #include "SFMLModule.hpp"
 
 #include "Window.hpp"
+#include "Button.hpp"
 
 typedef float(* Function)(float);
 const int FunctionsColorsCount = 6;
@@ -39,9 +40,13 @@ class Plot : public Element
             Color::Cyan
         };
     
-        void Draw(RenderWindow & window) override;
+        bool IsClicked;
+    
+        virtual void Draw(RenderWindow & window) override;
         
     public:
+        bool * VisibleFunctions;
+    
         Plot(Function func,
              float prec = 0.1,
              Vector xinter = Vector(-10, 10),
@@ -65,7 +70,7 @@ class Plot : public Element
         void SetYInterval(Vector interval);
         Vector GetYInterval();
         
-        void   SetPrecision(float precision);
+        void  SetPrecision(float precision);
         float GetPrecision();
     
         void SetFunctions(Function * funcs, int count);
@@ -73,11 +78,38 @@ class Plot : public Element
         void AddFunctions(Function * funcs, int count);
         Function * GetFunctions();
         int GetFunctionsCount();
+    
+        void ShowFunction (int index);
+        void ShowFunctions(int * indeces, int count);
+        void ShowFunctionsAll();
+    
+        void HideFunction (int index);
+        void HideFunctions(int * indeces, int count);
+        void HideFunctionsAll();
         
         Vector AbsPoint(float x, float y) const;
         Vector AbsPoint(Vector point) const;
     
-        void EventHandler(const Event & event) override;
+        virtual void EventHandler(const Event & event) override;
+};
+
+class PlotButtonFunctionShow : public Button
+{
+    private:
+        Plot * CurrentPlot;
+        int FunctionNumber;
+    
+    public:
+        PlotButtonFunctionShow(Plot * plot,
+                               int function_number,
+                               Vector size = Vector(0, 0),
+                               Vector pos  = Vector(0, 0),
+                               std::string text = "",
+                               Color display_color = Color::White,
+                               Color click_color = Color(128, 128, 128)
+                               );
+    
+        void ClickHandler() override;
 };
 
 #endif /* Plot_hpp */

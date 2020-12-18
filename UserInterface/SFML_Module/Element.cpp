@@ -10,35 +10,33 @@
 
 void Element::SetPosition(int x, int y)
 {
-    Position.X = x;
-    Position.Y = y;
+    Body.SetPosition(Vector(x, y));
 }
 
 void Element::SetPosition(Vector position)
 {
-    Position = position;
+    Body.SetPosition(position);
 }
 
 Vector Element::GetPosition()
 {
-    return Position;
+    return Body.GetPosition();
 }
 
 
 void Element::SetSize(int x, int y)
 {
-    Size.X = x;
-    Size.Y = y;
+    Body.SetSize(Vector(x, y));
 }
 
 void Element::SetSize(Vector size)
 {
-    Size = size;
+    Body.SetSize(size);
 }
 
 Vector Element::GetSize()
 {
-    return Size;
+    return Body.GetSize();
 }
 
 

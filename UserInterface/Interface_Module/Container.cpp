@@ -10,26 +10,20 @@
 
 Container::Container()
 {
-    Size.X = 0;
-    Size.Y = 0;
-    
-    Position.X = 0;
-    Position.Y = 0;
+    Body.SetSize(Vector(0, 0));
+    Body.SetPosition(Vector(0, 0));
 }
 
 Container::Container(unsigned int width, unsigned int height, unsigned int pos_x, unsigned int pos_y)
 {
-    Size.X = width;
-    Size.Y = height;
-    
-    Position.X = pos_x;
-    Position.Y = pos_y;
+    Body.SetSize(Vector(width, height));
+    Body.SetPosition(Vector(pos_x, pos_y));
 }
 
 Container::Container(Vector size, Vector pos)
 {
-    Size = size;
-    Position = pos;
+    Body.SetSize(size);
+    Body.SetPosition(pos);
 }
 
 void Container::Draw(RenderWindow & window)

@@ -8,18 +8,13 @@
 
 #include "Button.hpp"
 
-Button::Button(Action click_handler, Vector size, Vector pos, std::string text, Color display_color, Color click_color)
+Button::Button(Vector size, Vector pos, std::string text, Color display_color, Color click_color)
 {
-    ClickHandler = click_handler;
-    
-    Position = pos;
-    Size = size;
-    
     DisplayColor = display_color;
     ClickColor = click_color;
     
-    Body.SetSize(Size);
-    Body.SetPosition(Position);
+    Body.SetSize(size);
+    Body.SetPosition(pos);
     Body.SetFillColor(display_color);
     Body.SetOutlineThickness(2);
     Body.SetOutlineColor(Color::Black);
@@ -27,8 +22,9 @@ Button::Button(Action click_handler, Vector size, Vector pos, std::string text, 
 //    Font font;
 //    font.LoadFromFile("sansation.ttf");
 //    SetFont(font);
-//    
-//    SetText(text);
+
+////    SetText(text);
+//    Label.SetString(text);
 //    Label.SetFillColor(Color::Black);
 }
 
@@ -43,7 +39,7 @@ Font Button::GetFont()
     return Label.GetFont();
 }
 
-void Button::SetFont(const Font & font)
+void Button::SetFont(Font font)
 {
     Label.SetFont(font);
 }
@@ -55,8 +51,11 @@ std::string Button::GetText()
 
 void Button::SetText(std::string text)
 {
+    Vector size = Body.GetSize();
+    Vector pos  = Body.GetPosition();
+    
     Label.SetString(text);
-    Label.SetPosition(Vector(Position.X + (Size.X - Label.GetGlobalBounds().GetSize().X) / 2, Position.Y + (Size.Y - Label.GetGlobalBounds().GetSize().Y) / 2));
+    Label.SetPosition(Vector(pos.X + (size.X - Label.GetGlobalBounds().GetSize().X) / 2, pos.Y + (size.Y - Label.GetGlobalBounds().GetSize().Y) / 2));
 }
 
 Color Button::GetDisplayColor()
@@ -79,16 +78,6 @@ void Button::SetClickColor(Color color)
     ClickColor = color;
 }
 
-Action Button::GetClickHandler()
-{
-    return ClickHandler;
-}
-
-void Button::SetClickHandler(Action action)
-{
-    ClickHandler = action;
-}
-
 
 void Button::Animate()
 {
@@ -109,6 +98,11 @@ void Button::Draw(RenderWindow & window)
     window.Draw(Label);
 }
 
+
+void Button::ClickHandler()
+{
+    
+}
 
 void Button::EventHandler(const Event & event)
 {

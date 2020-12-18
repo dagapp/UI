@@ -90,3 +90,13 @@ bool Vector::operator > (Vector vector)
 {
     return (X > vector.X && Y > vector.Y);
 }
+
+bool Vector::operator <= (Vector vector)
+{
+    return (X <= vector.X && Y <= vector.Y);
+}
+
+bool Vector::operator >= (Vector vector)
+{
+    return (X >= vector.X && Y >= vector.Y);
+}

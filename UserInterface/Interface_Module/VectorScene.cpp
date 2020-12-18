@@ -12,14 +12,16 @@ VectorScene::VectorScene(std::vector<Vector> vectors, float length, float width,
 {
     Vectors = vectors;
     
-    Size = size;
-    Position = pos;
+    Body.SetSize(size);
+    Body.SetPosition(pos);
 }
 
 Vector VectorScene::ToScreen(Vector vector)
 {
-    return Vector( vector.X + Size.X / 2,
-                  -vector.Y + Size.Y / 2);
+    Vector size = Body.GetSize();
+    
+    return Vector( vector.X + size.X / 2,
+                  -vector.Y + size.Y / 2);
 }
 
 void VectorScene::Draw(RenderWindow & window)

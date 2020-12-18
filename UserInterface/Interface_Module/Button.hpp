@@ -15,25 +15,20 @@
 
 class Button : public Element
 {
-    private:
+    protected:
         bool State;
     
         Text Label;
-        
-        RectangleShape Body;
     
         Color DisplayColor;
         Color ClickColor;
-
-        Action ClickHandler;
     
         void Animate();
 
-        void Draw(RenderWindow & window) override;
+        virtual void Draw(RenderWindow & window) override;
     
     public:
-        Button(Action click_handler,
-               Vector size = Vector(0, 0),
+        Button(Vector size = Vector(0, 0),
                Vector pos  = Vector(0, 0),
                std::string text = "",
                Color display_color = Color::White,
@@ -43,7 +38,7 @@ class Button : public Element
         bool GetState();
         
         Font GetFont();
-        void SetFont(const Font & font);
+        void SetFont(Font font);
         std::string GetText();
         void SetText(std::string text);
     
@@ -51,11 +46,10 @@ class Button : public Element
         void SetDisplayColor(Color color);
         Color GetClickColor();
         void SetClickColor(Color color);
-
-        Action GetClickHandler();
-        void SetClickHandler(Action action);
     
-        void EventHandler(const Event & event) override;
+        virtual void ClickHandler();
+    
+        virtual void EventHandler(const Event & event) override;
 };
 
 #endif /* Button_hpp */

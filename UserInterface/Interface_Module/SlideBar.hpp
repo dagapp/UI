@@ -27,7 +27,7 @@ class SlideBar : public Element
         Vector GetBodyPosition();
         void   SetBodyPosition();
     
-        void Draw(RenderWindow & window) override;
+        virtual void Draw(RenderWindow & window) override;
     
     public:
         SlideBar(Vector inter,
@@ -39,7 +39,7 @@ class SlideBar : public Element
     
         float GetValue();
                   
-        void EventHandler(const Event & event) override;
+        virtual void EventHandler(const Event & event) override;
 };
 
 #endif /* SlideBar_hpp */

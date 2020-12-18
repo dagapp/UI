@@ -33,13 +33,13 @@ class RectangleShape
         void SetOutlineThickness(int thickness);
         void SetOutlineColor(Color color);
 
-        Vector GetPosition();
-        Vector GetSize();
-        Color GetFillColor();
-        float GetOutlineThickness();
-        Color GetOutlineColor();
+        Vector GetPosition() const;
+        Vector GetSize() const;
+        Color GetFillColor() const;
+        float GetOutlineThickness() const;
+        Color GetOutlineColor() const;
     
-        Rectangle GetGlobalBounds();
+        Rectangle GetGlobalBounds() const;
     
         void Rotate(float angle);
 };

@@ -18,14 +18,10 @@ SphereScene::SphereScene(Color sphere, std::vector<Vertex3> lights, Color ambien
     Radius = radius;
     Material = material;
     
-//    for (int i = 0; i < light_count; i++)
-//    {
-//        Lights.push_back(lights[i]);
-//    }
     Lights = lights;
     
-    Size = Vector(size, size);
-    Position = pos;
+    Body.SetSize(Vector(size, size));
+    Body.SetPosition(pos);
     
     Camera = Vector3(0, 0, size / 2);
 }
@@ -37,15 +33,19 @@ SphereScene::~SphereScene()
 
 Vector3 SphereScene::ToScene(Vector point)
 {
-    float x = point.X - (int)Size.X / 2;
-    float y = point.Y - (int)Size.Y / 2;
+    Vector size = Body.GetSize();
+    
+    float x = point.X - (int)size.X / 2;
+    float y = point.Y - (int)size.Y / 2;
     return Vector3(x, y, 0);
 }
 
 Vector SphereScene::ToDisplay(Vector3 point)
 {
-    return Vector(point.X + (int)Size.X / 2,
-                  point.Y + (int)Size.Y / 2);
+    Vector size = Body.GetSize();
+    
+    return Vector(point.X + (int)size.X / 2,
+                  point.Y + (int)size.Y / 2);
 }
 
 Vector3 SphereScene::Light(Vector3 point, int light_index)
@@ -94,19 +94,21 @@ Vector3 SphereScene::Light(Vector3 point, int light_index)
 
 void SphereScene::Draw(RenderWindow & window)
 {
+    Vector size = Body.GetSize();
+    
     sf::Image scene;
-    scene.create(Size.X, Size.Y);
+    scene.create(size.X, size.Y);
     sf::Texture texture;
-    texture.create(Size.X, Size.Y);
+    texture.create(size.X, size.Y);
     sf::Sprite sprite;
     
     Vector3 curr_color;
     
     Vector3 point;
     
-    for (int i = 0; i < (int)Size.Y; i++)
+    for (int i = 0; i < (int)size.Y; i++)
     {
-        for (int j = 0; j < (int)Size.X; j++)
+        for (int j = 0; j < (int)size.X; j++)
         {
             point = ToScene(Vector(i, j));
 
@@ -152,7 +154,7 @@ void SphereScene::RemoveLight(int index)
 
 void SphereScene::EventHandler(const Event & event)
 {
-    if (Rectangle(Size, Position).Contains(Vector(event.Body.mouseButton.x, event.Body.mouseButton.y)))
+    if (Body.GetGlobalBounds().Contains(Vector(event.Body.mouseButton.x, event.Body.mouseButton.y)))
     {
         if (event.Body.type == event.Body.MouseButtonPressed)
         {
@@ -164,7 +166,7 @@ void SphereScene::EventHandler(const Event & event)
         }
     }
     
-//    if (Rectangle(Size, Position).Contains(Vector(event.Body.mouseMove.x, event.Body.mouseMove.y)))
+//    if (Body.GetGlobalBounds().Contains(Vector(event.Body.mouseMove.x, event.Body.mouseMove.y)))
 //    {
 //        if (IsClicked && event.Body.type == event.Body.MouseMoved)
 //        {

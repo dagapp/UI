@@ -16,5 +16,6 @@
 #include "Interface_Module/UI.hpp"
 #include "Interface_Module/Window.hpp"
 #include "Interface_Module/SphereScene.hpp"
+#include "Interface_Module/Paint.hpp"
 
 #endif /* InterfaceModule_hpp */
